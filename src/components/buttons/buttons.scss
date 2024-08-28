@@ -1,0 +1,47 @@
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-height: 4.1rem;
+    border-radius: 999px;
+    padding: 0.8rem 2.3rem;
+    font-size: 1.4rem;
+    font-weight: 500;
+    border: 1px solid transparent;
+    background-image: linear-gradient(white, white), $theme-gradient;
+    background-origin: border-box;
+    background-clip: padding-box, border-box;
+    transition: .15s ease;
+
+    @media #{$mouse-device} {
+        &:hover {
+            background-image: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), $theme-gradient;
+        }
+    }
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    min-height: 3.4rem;
+    border-radius: 999px;
+    padding: 0.8rem 2.1rem;
+    font-size: 1.2rem;
+    font-weight: 500;
+    color: $color-text-primary-light;
+    gap: 0.2em;
+
+    &--lg {
+        min-height: 5.4rem;
+        font-size: 1.6rem;
+        padding: 1.4rem 3.1rem;
+    }
+
+    & img, & svg {
+        height: 1.5em;
+        width: auto;
+    }
+}

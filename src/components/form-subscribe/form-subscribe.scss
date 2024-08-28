@@ -1,0 +1,36 @@
+.form-subscribe {
+    border-radius: 999px;
+    background-color: #eee;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem;
+
+    &__input {
+        height: 3.4rem;
+        padding: 0 .6rem;
+        display: flex;
+        align-items: center;
+        flex: 1 1 auto;
+        width: 100%;
+        background-color: transparent;
+        font-size: 1.2rem;
+        color: $color-text-primary;
+
+        &:focus-visible {
+            outline: none;
+        }
+
+        &::placeholder {
+            color: $color-text-secondary;
+        }
+    }
+
+    &__btn {
+        flex: 0 0 auto;
+
+        &.btn-secondary {
+            padding: 0.6rem 1.45rem;
+        }
+    }
+}

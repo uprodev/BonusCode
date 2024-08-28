@@ -1,0 +1,39 @@
+.box-default {
+    background-color: $color-background-light;
+    border-radius: 2rem;
+    padding: 4rem 2.5rem;
+
+
+    @media (min-width: $mq-lg) {
+        padding: 2.4rem 4rem 4rem;
+    }
+}
+
+.box-default-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1.8rem;
+    
+    @media (min-width: $mq-lg) {
+        display: grid;
+        align-items: center;
+        grid-template: 
+            "title btn"
+            "content content"
+            / 1fr auto;
+    }
+}
+.box-default-grid-title-slot {
+    grid-area: title;
+}
+.box-default-grid-btn-slot {
+    grid-area: btn;
+}
+.box-default-grid-content-slot {
+    grid-area: content;
+    padding: 0 2rem;
+
+    @media (min-width: $mq-lg) {
+        padding: 0;
+    }
+}

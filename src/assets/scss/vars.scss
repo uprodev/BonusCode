@@ -1,0 +1,46 @@
+$minwidth: 320px;
+$mq-sm: 576px;
+$mq-md: 768px;
+$mq-lg: 1024px;
+$mq-xl: 1280px;
+$mq-xxl: 1536px;
+$mouse-device: "(hover: hover) and (pointer: fine)";
+$touch-device: "(hover: none) and (pointer: coarse)";
+
+$font-size: 1.6rem;
+
+$mainFontFamily: "Poppins", sans-serif;
+$mainFontFamilyItalic: "Poppins-Italic", sans-serif;
+
+
+$theme-gradient: linear-gradient(114deg, #04d268 0%, #009233 100%);
+$theme-shadow: 0 0 13px 0 rgba(0, 0, 0, 0.05);
+$theme-shadow-hover: 0 0 13px 0 rgba(0, 0, 0, 0.1);
+$theme-border-color: #f2f2f2; 
+
+// main colors
+// $color-primary
+$color-secondary: #9F9F9F;
+// $color-accent
+
+// text colors
+$color-text-primary: #000000;
+$color-text-primary-light: #fff;
+$color-text-secondary: #9F9F9F;
+$color-text-muted: #B2B2B2;
+
+// Backgrounds
+$color-background: #FBF9F9;
+$color-background-light: #FFFFFF;
+$color-background-dark: #404040;
+
+// Interface elements
+// $color-button
+// $color-button-hover
+// $color-link
+$color-link-hover: #009233;
+
+// States
+$color-success: #04D268;
+$color-error: #F20B0B;
+// $color-warning
