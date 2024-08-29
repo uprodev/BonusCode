@@ -15,15 +15,6 @@ if (header) {
 
         isScroll = window.scrollY;
     })
-
-    header.setHeaderAsFixed = () => {
-        header.style.setProperty('position', 'fixed');
-        document.body.style.setProperty('padding-top', `${header.clientHeight}px`);
-    }
-    header.unsetHeaderAsFixed = () => {
-        header.style.removeProperty('position');
-        document.body.style.removeProperty('padding-top');
-    }
 }
 
 {
@@ -42,13 +33,11 @@ if (header) {
 
         handleDocumentClick((e) => {
             if(e.target.closest('[data-action="open-mobile-menu"]')) {
-                header && header?.setHeaderAsFixed();
                 toggleDisablePageScroll(true);
                 mobileMenu.classList.add('mobile-menu--open');
             }
 
             if(e.target.closest('[data-action="close-mobile-menu"]')) {
-                header && header?.unsetHeaderAsFixed();
                 toggleDisablePageScroll(false);
                 mobileMenu.classList.remove('mobile-menu--open');
             }

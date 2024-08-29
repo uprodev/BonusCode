@@ -1,0 +1,44 @@
+.text-col-2 {
+    @media (min-width: $mq-lg) {
+        columns: 2;
+        column-gap: 8rem;
+        position: relative;
+
+        & h1, & h2 {
+            column-span: all;
+        }
+
+        & > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        &.box-default {
+            background-color: transparent;
+        }
+
+        &::before {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: calc(50% - 1rem);
+            background-color: $color-background-light;
+            border-radius: 2rem;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            right: 0;
+            height: 100%;
+            width: calc(50% - 1rem);
+            background-color: $color-background-light;
+            border-radius: 2rem;
+        }
+    }
+}

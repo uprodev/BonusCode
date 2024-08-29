@@ -1,0 +1,33 @@
+.text-col-2-with-img {
+    @media (min-width: $mq-lg) {
+        display: flex;
+        align-items: center;
+        gap: 8rem;
+
+        &--invert {
+            flex-direction: row-reverse;
+        }
+    }
+
+    &__text {
+        @media (min-width: $mq-lg) {
+            flex: 0 1 calc(50% - 1rem);
+        }
+    }
+
+    &__img {
+        margin-top: 1.6rem;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 0;
+            flex: 0 1 calc(50% - 1rem);
+        }
+
+        & img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 1rem;
+        }
+    }
+}

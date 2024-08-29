@@ -1,5 +1,13 @@
+.top-space {
+    padding-bottom: 9.2rem;
+
+    @media (min-width: $mq-lg) {
+        padding-bottom: 14.5rem;
+    }
+}
+
 .header {
-    position: sticky;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 50;
