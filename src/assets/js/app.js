@@ -25,6 +25,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // ==== components =====================================================
     @@include('../../components/promo-code/promo-code.js')
+    @@include('../../components/form-fields/form-fields.js')
     // ==== // components =====================================================
 
 
