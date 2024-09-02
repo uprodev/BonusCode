@@ -58,8 +58,7 @@ ol {
     & h2,
     & h3,
     & h4,
-    & h5,
-    & h6 {
+    & h5 {
        // margin-bottom: 0.75em;
         color: inherit;
 
@@ -88,10 +87,17 @@ ol {
         }
     }
 
+    & h6 {
+        font-size: 1.6rem;
+        font-weight: 500;
+    }
+
     & p,
     & ul,
     & ol {
-        margin-bottom: 1em;
+        &:not(.mb-0) {
+            margin-bottom: 1em;
+        }
     }
 
     & ul {
@@ -99,18 +105,6 @@ ol {
 
         & > li {
             list-style: disc;
-
-            &:not(:last-child) {
-                margin-bottom: 1.25em;
-
-                @media (min-width: $mq-lg) {
-                    margin-bottom: 0.75em;
-                }
-            }
-
-            & > *:last-child {
-                margin-bottom: 0;
-            }
         }
     }
 
@@ -195,9 +189,8 @@ ol {
         & ~ h2,
         & ~ h3,
         & ~ h4,
-        & ~ h5,
-        & ~ h6 {
-            margin-top: 4rem;
+        & ~ h5 {
+            margin-top: 3rem;
 
             @media (min-width: $mq-lg) {
                 margin-top: 3.2rem;
