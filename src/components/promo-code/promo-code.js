@@ -2,29 +2,35 @@
     const $promoCodeElements = document.querySelectorAll('[data-promo-code]');
     $promoCodeElements.forEach($promoCode => {
         const $codeContainer = $promoCode.querySelector('.promo-code__value');
-        const $btnCopyAgain = $promoCode.querySelector('.promo-code__btn');
         const $parentPopup = $promoCode.closest('.popup');
 
         
-        const copyCode = () => {
-            navigator.clipboard.writeText($codeContainer.innerText.trim());
-            $promoCode.classList.add('code-copied');
+        if($parentPopup) {
+            $parentPopup.onOpen(() => {
+                setTimeout(() => {
+                    copyCode($promoCode, $codeContainer);
+                }, 400);
+            });
         }
+    })
 
-        $parentPopup.onOpen(() => {
-            setTimeout(() => {
-                copyCode();
-            }, 400);
-        });
+    handleDocumentClick((e) => {
+        if(e.target.closest('[data-action="copy-code"]')) {
+            const $parent = e.target.closest('[data-promo-code]');
+            const $vlueContaier = $parent.querySelector('.promo-code__value');
 
-        $btnCopyAgain.addEventListener('click', () => {
-            copyCode();
+            copyCode($parent, $vlueContaier);
 
             const range = document.createRange();
-            range.selectNode($codeContainer);
+            range.selectNode($vlueContaier);
             
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
-        })
-    })
+        }
+    });
+
+    function copyCode($promoCodeWrapper, $pormoCodeValue) {
+        navigator.clipboard.writeText($pormoCodeValue.innerText.trim());
+        $promoCodeWrapper.classList.add('code-copied');
+    }
 }

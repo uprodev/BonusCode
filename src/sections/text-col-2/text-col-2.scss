@@ -8,37 +8,59 @@
             column-span: all;
         }
 
+        & p {
+            break-inside: avoid;
+        }
+
         & > * {
             position: relative;
             z-index: 2;
         }
 
-        &.box-default {
-            background-color: transparent;
-        }
 
-        &::before {
-            content: '';
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: calc(50% - 1rem);
-            background-color: $color-background-light;
-            border-radius: 2rem;
+        &:not(.text-col-2--v2) {
+            &.box-default {
+                background-color: transparent;
+            }
+    
+            &::before {
+                content: '';
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                left: 0;
+                height: 100%;
+                width: calc(50% - 1rem);
+                background-color: $color-background-light;
+                border-radius: 2rem;
+            }
+    
+            &::after {
+                content: '';
+                position: absolute;
+                z-index: 1;
+                top: 0;
+                right: 0;
+                height: 100%;
+                width: calc(50% - 1rem);
+                background-color: $color-background-light;
+                border-radius: 2rem;
+            }
         }
+    }
 
-        &::after {
-            content: '';
-            position: absolute;
-            z-index: 1;
-            top: 0;
-            right: 0;
-            height: 100%;
-            width: calc(50% - 1rem);
-            background-color: $color-background-light;
-            border-radius: 2rem;
+    &--v2 {
+        & h1, & h2 {
+            text-align: center;
+        }
+    }
+
+    & .text-group {
+        display: inline-block;
+        margin-top: 4rem;
+
+        & > *:last-child {
+            margin-bottom: 0;
         }
     }
 }

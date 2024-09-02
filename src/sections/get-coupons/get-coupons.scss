@@ -1,0 +1,47 @@
+.get-coupons {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+
+    @media (min-width: $mq-lg) {
+        padding: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2.6rem;
+        border-radius: 999px;
+    }
+
+    &__title {
+        text-align: center;
+        color: $color-text-primary-light;
+        font-size: 1.8rem;
+
+        @media (min-width: $mq-lg) {
+            padding-left: 1.6rem;
+        }
+    }
+
+    &__form-slot {
+        margin: 2rem auto 0;
+
+        @media (min-width: $mq-lg) {
+            margin: 0;
+            width: 100%;
+            max-width: 42.6rem;
+        }
+
+        & .form-subscribe {
+            padding: 0.8rem;
+        }
+
+        & .form-subscribe__input {
+            font-size: 1.4rem;
+        }
+
+        & .form-subscribe__btn {
+            min-height: 3.7rem;
+            font-size: 1.4rem;
+            min-width: 9.6rem;
+        }
+    }
+}

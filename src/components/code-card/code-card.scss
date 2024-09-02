@@ -1,0 +1,155 @@
+.code-card {
+    --padding-x: 2rem;
+    display: flex;
+    flex-direction: column;
+    border-radius: 1.4rem;
+    background-color: $color-background-light;
+    border: 1px solid $theme-border-color;
+    box-shadow: $theme-shadow;
+    padding: 2.6rem var(--padding-x) 2.2rem;
+
+    @media (min-width: $mq-lg) {
+        --padding-x: 2.6rem;
+    }
+    
+
+
+    &__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.6rem;
+        flex-wrap: wrap;
+    }
+
+    &__title {
+        font-size: 2rem;
+        font-weight: 600;
+
+        @media (min-width: $mq-lg) {
+            font-size: 2.4rem;
+        }
+    }
+
+    &__logo {
+        height: 3.6rem;
+
+        @media (min-width: $mq-lg) {
+              height: 4rem;  
+        }
+
+        & img, & svg {
+            height: 100%;
+            width: auto;
+        }
+    }
+
+    &__logo-external {
+        order: 1;
+        height: 3.9rem;
+
+        @media (min-width: $mq-lg) {
+            order: initial;
+        }
+
+        & img {
+            height: 100%;
+            width: auto;
+            display: block;
+        }
+    }
+
+    &__text {
+        margin-top: 1.8rem;
+        font-size: 1.6rem;
+        margin-bottom: auto;
+
+        & a {
+            color: $color-text-secondary;
+        }
+    }
+
+    &__row {
+        margin-top: 3rem;
+        position: relative;
+        padding: 1.8rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1.6rem;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 5rem;
+        }
+
+        &::before, &::after {
+            position: absolute;
+            content: '';
+            height: 1px;
+            background-color: $theme-border-color;
+            width: calc(100% + (var(--padding-x) * 2));
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        &::before {
+            top: 0;
+        }
+
+        &::after {
+            bottom: 0;
+        }
+
+        & .btn-secondary {
+            flex: 0 0 auto;
+        }
+    }
+
+    &__footer {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        flex-wrap: wrap;
+        font-size: 1.2rem;
+
+        & div {
+            display: flex;
+            align-items: center;
+            gap: .42em;
+            & img, & svg {
+                height: 1.5em;
+                width: auto;
+                display: inline-block;
+            }
+        }
+    }
+
+    &__promo-code {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        border-radius: 999px;
+        background-color: #EEEEEE;
+        padding: .45rem;
+        
+        @media (min-width: $mq-md) {
+            max-width: 21.6rem;
+            margin-left: auto;
+        }
+
+        & .promo-code__value {
+            padding: 0 .6rem;
+            height: auto;
+            min-width: auto;
+            font-size: 1.8rem;
+            flex: 1 1 auto;
+            border: none;
+            justify-content: initial;
+        }
+
+        & .btn-secondary{
+            padding: 0.8rem 1rem;
+        }
+    }
+}

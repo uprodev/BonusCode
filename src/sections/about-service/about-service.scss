@@ -1,0 +1,128 @@
+.about-service {
+    display: flex;
+    flex-direction: column;
+    gap: 2.4rem;
+
+    @media (min-width: $mq-lg) {
+        flex-direction: row;
+        gap: 4rem;
+    }
+
+    &__col {
+        @media (min-width: $mq-lg) {
+            flex: 0 1 calc(50% - 2rem);
+        }
+    }
+
+    &__head {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    &__logo {
+        flex: 0 0 auto;
+        width: 13.6rem;
+        height: 6.8rem;
+        border-radius: 0.7rem;
+        border: 1px solid #b2b2b2;
+        display: block;
+        overflow: hidden;
+
+        @media (min-width: $mq-lg) {
+            width: 20rem;
+            height: 9.8rem;
+        }
+
+        & img {
+            height: 100%;
+            width: 100%;
+            object-fit: contain;
+        }
+    }
+
+    &__meta {
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+    }
+
+    &__label {
+        font-size: 1.8rem;
+        font-weight: 600;
+
+        @media (min-width: $mq-lg) {
+            font-size: 2.6rem;
+        }
+    }
+
+    &__link {
+        line-height: 1em;
+
+        @media (min-width: $mq-lg) {
+            font-size: 1.8rem;
+        }
+    }
+
+    &__stars {
+        font-size: 1.8rem;
+
+        @media (min-width: $mq-lg) {
+            font-size: 2.4rem;
+        }
+    }
+
+    &__text {
+        margin-top: 2.4rem;
+        font-size: 1.4rem;
+
+        @media (min-width: $mq-lg) {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__btn-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.4rem;
+        margin-top: 2.4rem;
+    }
+
+    &__btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: 1px solid #d9d9d9;
+        background: #f5f5f5;
+        min-height: 3.7rem;
+        padding: 0.6rem 1.7rem;
+        font-size: 1.6rem;
+        line-height: 1em;
+        color: $color-secondary;
+        border-radius: 0.4rem;
+    }
+
+    &__table {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1.2rem;
+        font-size: 1.4rem;
+        margin-top: 2.4rem;
+
+        @media (min-width: $mq-lg) {
+            font-size: 1.6rem;
+        }
+    }
+
+    &__table-title {
+
+    }
+
+    &__table-value {
+        white-space: nowrap;
+        font-weight: 600;
+    }
+
+    &__title {}
+
+}

@@ -1,0 +1,47 @@
+.stars {
+    display: flex;
+    font-size: inherit;
+    color: #F1A508;
+    gap: 0.1em;
+    cursor: pointer;
+    content-visibility: auto;
+
+    &:not([data-stars="clickable"]) {
+        pointer-events: none;
+    }
+
+    & input {
+        visibility: hidden;
+        position: absolute;
+        z-index: -1;
+        pointer-events: none;
+    }
+
+    &__item {
+        position: relative;
+
+        &:active {
+            transform: scale(0.9);
+        }
+
+        & svg {
+            display: block;
+            height: 1em;
+            width: auto;
+        }
+    }
+
+    &__item-outline-icon {
+        position: relative;
+        z-index: 1;
+    }
+
+    &__item-solid-icon {
+        position: absolute;
+        z-index: 2;
+        top: 0;
+        left: 0;
+        overflow: hidden;
+        width: 0;
+    }
+}

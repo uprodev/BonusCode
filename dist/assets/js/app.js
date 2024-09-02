@@ -816,31 +816,37 @@ window.popup = {
     const $promoCodeElements = document.querySelectorAll('[data-promo-code]');
     $promoCodeElements.forEach($promoCode => {
         const $codeContainer = $promoCode.querySelector('.promo-code__value');
-        const $btnCopyAgain = $promoCode.querySelector('.promo-code__btn');
         const $parentPopup = $promoCode.closest('.popup');
 
         
-        const copyCode = () => {
-            navigator.clipboard.writeText($codeContainer.innerText.trim());
-            $promoCode.classList.add('code-copied');
+        if($parentPopup) {
+            $parentPopup.onOpen(() => {
+                setTimeout(() => {
+                    copyCode($promoCode, $codeContainer);
+                }, 400);
+            });
         }
+    })
 
-        $parentPopup.onOpen(() => {
-            setTimeout(() => {
-                copyCode();
-            }, 400);
-        });
+    handleDocumentClick((e) => {
+        if(e.target.closest('[data-action="copy-code"]')) {
+            const $parent = e.target.closest('[data-promo-code]');
+            const $vlueContaier = $parent.querySelector('.promo-code__value');
 
-        $btnCopyAgain.addEventListener('click', () => {
-            copyCode();
+            copyCode($parent, $vlueContaier);
 
             const range = document.createRange();
-            range.selectNode($codeContainer);
+            range.selectNode($vlueContaier);
             
             window.getSelection().removeAllRanges();
             window.getSelection().addRange(range);
-        })
-    })
+        }
+    });
+
+    function copyCode($promoCodeWrapper, $pormoCodeValue) {
+        navigator.clipboard.writeText($pormoCodeValue.innerText.trim());
+        $promoCodeWrapper.classList.add('code-copied');
+    }
 }
     {
     const $textareas = document.querySelectorAll('.textarea');
@@ -850,6 +856,63 @@ window.popup = {
             this.style.height = this.scrollHeight + 'px';
         });
     })
+}
+    const starsElements = document.querySelectorAll('[data-stars]');
+starsElements.forEach(starsEl => {
+    const input = starsEl.querySelector('input');
+    let starsValue = starsEl.getAttribute('data-stars-value');
+    const items = starsEl.querySelectorAll('.stars__item');
+    let state = numberToArray(starsValue);
+
+    const setState = () => {
+        items.forEach((item, index) => {
+            const value = state[index];
+            const icon = item.querySelector('.stars__item-solid-icon');
+
+            if (value) {
+                icon.style.setProperty('width', (100 * value) + '%');
+            } else {
+                icon.style.setProperty('width', '0%');
+            }
+        })
+    }
+
+    setState();
+
+    items.forEach((item, index) => {
+        const value = index + 1;
+
+        item.addEventListener('click', () => {
+            input.setAttribute('value', value);
+            input.value = value;
+            state = numberToArray(value);
+            setState();
+        });
+
+        item.addEventListener('mouseenter', () => {
+            state = numberToArray(value);
+            setState();
+        })
+    });
+
+
+    starsEl.addEventListener('mouseleave', (e) => {
+        state = numberToArray(input.value);
+        setState();
+    })
+})
+
+function numberToArray(num) {
+    const parts = String(num).split('.');
+    const integerPart = parseInt(parts[0]);
+    const result = Array(integerPart).fill(1);
+
+    if (parts[1]) {
+        const fractionalPart = parseFloat('0.' + parts[1]);
+        result.push(fractionalPart);
+    }
+
+    return result;
 }
     // ==== // components =====================================================
 

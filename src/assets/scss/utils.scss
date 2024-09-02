@@ -56,10 +56,34 @@
     }
 }
 
+.section-space-lg {
+    margin-top: 8rem;
+
+    @media (min-width: $mq-lg) {
+        margin-top: 6rem;
+
+        &:first-child {
+            margin-top: 0rem;
+        }
+    }
+
+    &:first-child {
+        margin-top: 2rem;
+    }
+}
+
 .text-success {
     color: $color-success;
 }
 
 .text-error {
     color: $color-error;
+}
+
+.title-mob-center {
+    @media (min-width: 0px) and (max-width: $mq-md - 1px) {
+        & h1, & h2 {
+            text-align: center;
+        }
+    }
 }
