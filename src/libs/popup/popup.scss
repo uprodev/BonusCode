@@ -48,6 +48,10 @@
         max-width: 56rem;
         border-radius: 0.7rem;
         min-height: 20rem;    
+
+        &--lg {
+            max-width: 76rem;
+        }
     }
 
     &__btn-close {

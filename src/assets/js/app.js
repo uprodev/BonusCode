@@ -21,6 +21,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // ==== libs =====================================================
     @@include('../../libs/popup/popup.js')
+    @@include('../../libs/spoiler/spoiler.js')
     // ==== // libs =====================================================
 
     // ==== components =====================================================
@@ -33,11 +34,6 @@ window.addEventListener("DOMContentLoaded", () => {
     // ==== sections =====================================================
     @@include('../../sections/header/header.js')
     // ==== // sections =====================================================
-
-    // ==== libs =====================================================
-    @@include('../../libs/spoiler/spoiler.js')
-    // ==== // libs =====================================================
-
 
     document.body.classList.add('page-loaded');
 }); 

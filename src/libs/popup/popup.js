@@ -15,10 +15,12 @@ if (popupLinks.length > 0) {
             e.preventDefault();
         });
 
-        curentPopup.onOpenSubscribes = [];
-
-        curentPopup.onOpen = (callback) => {
-            curentPopup.onOpenSubscribes.push(callback);
+        if(curentPopup) {
+            curentPopup.onOpenSubscribes = [];
+    
+            curentPopup.onOpen = (callback) => {
+                curentPopup.onOpenSubscribes.push(callback);
+            }
         }
     }
 }

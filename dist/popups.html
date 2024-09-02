@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>New Project</title>
+	<meta name="format-detection" content="telephone=no">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="assets/css/style.css">
+	<link href="
+https://cdn.jsdelivr.net/npm/air-datepicker@3.5.3/air-datepicker.min.css
+" rel="stylesheet">
+	<style>
+		.page-loaded .page-loader {
+			display: none;
+		}
+
+		.page-loader {
+			position: fixed;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background-color: white;
+			z-index: 100;
+			display: -webkit-box;
+			display: -ms-flexbox;
+			display: flex;
+			-webkit-box-align: center;
+			-ms-flex-align: center;
+			align-items: center;
+			-webkit-box-pack: center;
+			-ms-flex-pack: center;
+			justify-content: center;
+			color: #009233;
+		}
+
+		.lds-roller,
+		.lds-roller div,
+		.lds-roller div:after {
+			-webkit-box-sizing: border-box;
+			box-sizing: border-box;
+		}
+
+		.lds-roller {
+			display: inline-block;
+			position: relative;
+			width: 80px;
+			height: 80px;
+		}
+
+		.lds-roller div {
+			-webkit-animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+			animation: lds-roller 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+			-webkit-transform-origin: 40px 40px;
+			-ms-transform-origin: 40px 40px;
+			transform-origin: 40px 40px;
+		}
+
+		.lds-roller div:after {
+			content: " ";
+			display: block;
+			position: absolute;
+			width: 7.2px;
+			height: 7.2px;
+			border-radius: 50%;
+			background: currentColor;
+			margin: -3.6px 0 0 -3.6px;
+		}
+
+		.lds-roller div:nth-child(1) {
+			-webkit-animation-delay: -0.036s;
+			animation-delay: -0.036s;
+		}
+
+		.lds-roller div:nth-child(1):after {
+			top: 62.62742px;
+			left: 62.62742px;
+		}
+
+		.lds-roller div:nth-child(2) {
+			-webkit-animation-delay: -0.072s;
+			animation-delay: -0.072s;
+		}
+
+		.lds-roller div:nth-child(2):after {
+			top: 67.71281px;
+			left: 56px;
+		}
+
+		.lds-roller div:nth-child(3) {
+			-webkit-animation-delay: -0.108s;
+			animation-delay: -0.108s;
+		}
+
+		.lds-roller div:nth-child(3):after {
+			top: 70.90963px;
+			left: 48.28221px;
+		}
+
+		.lds-roller div:nth-child(4) {
+			-webkit-animation-delay: -0.144s;
+			animation-delay: -0.144s;
+		}
+
+		.lds-roller div:nth-child(4):after {
+			top: 72px;
+			left: 40px;
+		}
+
+		.lds-roller div:nth-child(5) {
+			-webkit-animation-delay: -0.18s;
+			animation-delay: -0.18s;
+		}
+
+		.lds-roller div:nth-child(5):after {
+			top: 70.90963px;
+			left: 31.71779px;
+		}
+
+		.lds-roller div:nth-child(6) {
+			-webkit-animation-delay: -0.216s;
+			animation-delay: -0.216s;
+		}
+
+		.lds-roller div:nth-child(6):after {
+			top: 67.71281px;
+			left: 24px;
+		}
+
+		.lds-roller div:nth-child(7) {
+			-webkit-animation-delay: -0.252s;
+			animation-delay: -0.252s;
+		}
+
+		.lds-roller div:nth-child(7):after {
+			top: 62.62742px;
+			left: 17.37258px;
+		}
+
+		.lds-roller div:nth-child(8) {
+			-webkit-animation-delay: -0.288s;
+			animation-delay: -0.288s;
+		}
+
+		.lds-roller div:nth-child(8):after {
+			top: 56px;
+			left: 12.28719px;
+		}
+
+		@-webkit-keyframes lds-roller {
+			0% {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+
+		@keyframes lds-roller {
+			0% {
+				-webkit-transform: rotate(0deg);
+				transform: rotate(0deg);
+			}
+
+			100% {
+				-webkit-transform: rotate(360deg);
+				transform: rotate(360deg);
+			}
+		}
+
+		@media print {
+
+			header,
+			footer {
+				display: none;
+			}
+		}
+	</style>
+
+	<script>
+		let element = document.querySelector('html');
+		if (element) {
+			let zoom = 1;
+			const setFontSize = () => {
+				let baseWidth = 1440;
+				let baseFontSize = 10;
+				let screenWidth = element.clientWidth;
+				let screenHeight = element.clientHeight;
+				let maxHeight = screenWidth * 0.4817;
+				let value;
+				let heightOffset = (screenHeight / maxHeight) > 1 ? 1 : screenHeight / maxHeight;
+
+				if (screenWidth <= baseWidth) {
+					let scaleFactor = 10;
+					value = (baseFontSize + (screenWidth - baseWidth) * scaleFactor / baseWidth) * zoom;
+				} else {
+					let scaleFactor = 10;
+					value = ((baseFontSize + (screenWidth - baseWidth) * scaleFactor / baseWidth) * heightOffset) * zoom;
+
+					if (value < baseFontSize) value = baseFontSize;
+				}
+
+				element.style.fontSize = value + 'px';
+			}
+
+			setFontSize();
+			window.addEventListener('resize', setFontSize);
+
+			document.addEventListener('wheel', function (event) {
+				if (document.documentElement.clientWidth < 1024) return;
+
+				if (event.ctrlKey || event.metaKey) {
+					if (event.deltaY < 0) {
+						zoom += 0.1
+						setFontSize();
+					} else {
+						zoom -= 0.1
+						setFontSize();
+					}
+					event.preventDefault();
+				}
+			}, { passive: false });
+		}
+	</script>
+
+	
+<script src="assets/js/vendors.js"></script>
+<script src="assets/js/app.js"></script>
+</head>
+
+<body>
+    <div class="page-loader">
+    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+</div>
+
+    <header data-header class="header">
+    <div class="container header__body">
+        <a href="#" class="header__logo">
+            <picture>
+                <source srcset="assets/images/logo.svg" media="(min-width: 1024px)" />
+                <img src="assets/images/logo-sm.svg" alt="" />
+            </picture>
+        </a>
+        <form action="/" class="header__search">
+            <input type="search" class="header__search-input" placeholder="Search for brands">
+            <button class="header__search-btn default-gradient">
+                <img src="assets/icons/search-white.svg" alt="">
+            </button>
+        </form>
+        <ul class="header__nav">
+            <li class="">
+                <a href="#">
+                    Promo Codes
+                </a>
+            </li>
+            <li class="">
+                <a href="#">
+                    Categories
+                </a>
+            </li>
+        </ul>
+        <button type="button" class="header__burger" data-action="open-mobile-menu">
+            <svg width="33" height="33" viewBox="0 0 33 33" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M30.25 24.7569C30.25 25.5131 29.6367 26.125 28.8819 26.125H17.8681C17.5053 26.125 17.1573 25.9809 16.9007 25.7243C16.6441 25.4677 16.5 25.1197 16.5 24.7569C16.5 24.394 16.6441 24.046 16.9007 23.7895C17.1573 23.5329 17.5053 23.3888 17.8681 23.3888H28.8819C29.6381 23.3888 30.25 24.0006 30.25 24.7569ZM30.25 16.5C30.25 17.2563 29.6367 17.8681 28.8819 17.8681H4.11812C3.75528 17.8681 3.40729 17.724 3.15071 17.4674C2.89414 17.2108 2.75 16.8628 2.75 16.5C2.75 16.1372 2.89414 15.7892 3.15071 15.5326C3.40729 15.276 3.75528 15.1319 4.11812 15.1319H28.8819C29.6381 15.1319 30.25 15.7451 30.25 16.5ZM28.8819 9.61125C29.2447 9.61125 29.5927 9.46711 29.8493 9.21054C30.1059 8.95396 30.25 8.60597 30.25 8.24312C30.25 7.88028 30.1059 7.53229 29.8493 7.27571C29.5927 7.01914 29.2447 6.875 28.8819 6.875H12.3681C12.1885 6.875 12.0106 6.91039 11.8446 6.97914C11.6786 7.0479 11.5278 7.14867 11.4007 7.27571C11.2737 7.40276 11.1729 7.55358 11.1041 7.71957C11.0354 7.88556 11 8.06346 11 8.24312C11 8.42279 11.0354 8.6007 11.1041 8.76668C11.1729 8.93267 11.2737 9.08349 11.4007 9.21054C11.5278 9.33758 11.6786 9.43835 11.8446 9.50711C12.0106 9.57586 12.1885 9.61125 12.3681 9.61125H28.8819Z"
+                    fill="black" />
+            </svg>
+        </button>
+
+    </div>
+</header>
+
+<div data-mobile-menu class="mobile-menu">
+    <div class="mobile-menu__head">
+        <a href="#" class="mobile-menu__logo">
+            <img src="assets/images/logo.svg" alt="" />
+        </a>
+        <button data-action="close-mobile-menu" class="mobile-menu__close">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
+                class="size-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+            </svg>
+        </button>
+    </div>
+    <div class="mobile-menu__body">
+        <ul class="mobile-menu__nav">
+            <li>
+                <a href="#">Promo Codes</a>
+            </li>
+            <li>
+                <a href="#">Categories</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <div class="top-space"></div>
+    <main class="_page">
+        <div class="container">
+            <div class="box-default">
+                <ul class="mb-0 text-[2rem] grid gap-[1rem]">
+                    <li>
+                        <a href="#popup-promo-code" data-action="open-popup">Popup by click “Show Promo Code” button</a>
+                    </li>
+                    <li>
+                        <a href="#popup-discount" data-action="open-popup">Popup by click “Discount” button</a>
+                    </li>
+                    <li>
+                        <a href="#popup-untested-codes" data-action="open-popup">Popup by click “Try Untested Codes” button</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </main>
+
+    <footer class="footer">
+    <div class="container">
+        <div class="footer__body">
+            <div class="footer__nav">
+                <div class="footer__nav-col">
+                    <a href="#" class="footer__nav-title">
+                        About us
+                    </a>
+                    <ul class="footer__nav-list">
+                        <li>
+                            <a href="#">Contact us</a>
+                        </li>
+                        <li>
+                            <a href="#">Terms of Use</a>
+                        </li>
+                        <li>
+                            <a href="#">Privacy Policy</a>
+                        </li>
+                        <li>
+                            <a href="#">Scholarship</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__nav-col">
+                    <a href="#" class="footer__nav-title">
+                        Connect
+                    </a>
+                    <ul class="footer__nav-list">
+                        <li>
+                            <a href="#">Instagram</a>
+                        </li>
+                        <li>
+                            <a href="#">Facebook</a>
+                        </li>
+                        <li>
+                            <a href="#">LinkedIn</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer__nav-col">
+                    <a href="#" class="footer__nav-title">
+                        Shop coupons
+                    </a>
+                    <ul class="footer__nav-list">
+                        <li>
+                            <a href="#">Categories</a>
+                        </li>
+                        <li>
+                            <a href="#">Shop deals</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer__text text-content last-no-margin">
+                <p>
+                    Dealspotr finds coupon codes, discount sales and promotions for e-commerce stores listed in
+                    our store directory. While promo codes are time-sensitive and may expire, we have human editors
+                    verify discount codes at retailer websites to ensure they work at the time of test.
+                </p>
+                <p>
+                    To redeem a promo code for a discount, simply copy the code to your clipboard, then paste it into
+                    the coupon code entry box during checkout on the retailer's website. Look for a confirmation message
+                    that your discount has been applied. See the full list of supported stores with coupon codes here.
+                </p>
+                <p>
+                    Dealspotr may receive affiliate commissions from certain merchants in our index with whom we have
+                    partnerships.
+                </p>
+            </div>
+        </div>
+        <div class="footer__bottom box-default">
+            <div class="footer__bottom-logo">
+                <a href="#">
+                    <img src="assets/images/logo.svg" alt="">
+                </a>
+            </div>
+            <div class="footer__bottom-copy">
+                Legal information - Address <br>
+                Copyright © 2024 • All rights reserved
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <div class="popup" id="popup-promo-code">
+    <div class="popup__body">
+        <div class="popup__content">
+            <button class="popup__btn-close" data-action="close-popup">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4.82822 3.23099L14.9952 13.3905L25.0542 3.33299C25.7397 2.72249 26.4492 3.087 26.7327 3.39299C26.9146 3.6146 27.0084 3.89544 26.9962 4.18185C26.984 4.46825 26.8667 4.74013 26.6667 4.94549L16.6062 15.0015L26.6667 25.0545C27.1137 25.4295 27.1137 26.1645 26.7552 26.5755C26.3952 26.985 25.7352 27.222 25.1127 26.736L14.9952 16.6125L4.86572 26.7405C4.42172 27.138 3.68972 27.057 3.32822 26.6625C2.96522 26.2665 2.82722 25.5825 3.29072 25.0995L13.3842 15.0015L3.33272 4.94549C2.96522 4.54049 2.83772 3.79949 3.33272 3.33299C3.82772 2.86649 4.56572 2.93099 4.82822 3.23099Z"
+                        fill="black" />
+                </svg>
+            </button>
+
+            <div class="promo-code-popup">
+                <div class="promo-code-popup__logo img-center">
+                    <a href="#">
+                        <img src="assets/images/card-v2-logo-6.png" alt="">
+                    </a>
+                </div>
+                <div class="promo-code-popup__title">
+                    Free Gift - Welcome Bonus When You Sign Up at bet365rn (Code In The Link)
+                </div>
+                <div class="promo-code-popup__code-wrap promo-code" data-promo-code="copy-by-open-popup" >
+                    <div class="promo-code__message">
+                        Code Copied to your Clipboard!
+                    </div>
+                    <div class="promo-code__value">
+                        365_02369056
+                    </div>
+                    <button class="promo-code__btn" data-action="copy-code">
+                        <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                fill="black" />
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                fill="black" />
+                        </svg>
+                        Copy Again
+                    </button>
+                </div>
+
+                <div class="promo-code-popup__btn">
+                    <a href="#" class="btn-secondary btn-secondary--lg default-gradient">
+                        <img src="assets/icons/square-with-arrow-up.svg" alt="">
+                        Use at bet365.com
+                    </a>
+                </div>
+
+                <div class="promo-code-popup__question">
+                    <div class="promo-code-popup__question-title">
+                        Did this code work?
+                    </div>
+                    <div class="promo-code-popup__question-btn-group">
+                        <a href="#" class="promo-code-popup__question-btn text-success">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M23 10C23 9.46957 22.7893 8.96086 22.4142 8.58579C22.0391 8.21071 21.5304 8 21 8H14.68L15.64 3.43C15.66 3.33 15.67 3.22 15.67 3.11C15.67 2.7 15.5 2.32 15.23 2.05L14.17 1L7.59 7.58C7.22 7.95 7 8.45 7 9V19C7 19.5304 7.21071 20.0391 7.58579 20.4142C7.96086 20.7893 8.46957 21 9 21H18C18.83 21 19.54 20.5 19.84 19.78L22.86 12.73C22.95 12.5 23 12.26 23 12V10ZM1 21H5V9H1V21Z"
+                                    fill="#04D268" />
+                            </svg>
+                            Yes
+                        </a>
+                        <a href="#" class="promo-code-popup__question-btn text-error">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M23 14C23 14.5304 22.7893 15.0391 22.4142 15.4142C22.0391 15.7893 21.5304 16 21 16H14.68L15.64 20.57C15.66 20.67 15.67 20.78 15.67 20.89C15.67 21.3 15.5 21.68 15.23 21.95L14.17 23L7.59 16.42C7.22 16.05 7 15.55 7 15V5C7 4.46957 7.21071 3.96086 7.58579 3.58579C7.96086 3.21071 8.46957 3 9 3H18C18.83 3 19.54 3.5 19.84 4.22L22.86 11.27C22.95 11.5 23 11.74 23 12V14ZM1 3H5V15H1V3Z"
+                                    fill="#F20B0B" />
+                            </svg>
+                            No
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="popup-subscribe">
+                <div class="popup-subscribe__icon">
+                    <svg width="36" height="26" viewBox="0 0 36 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M34.2 0H1.8C1.32261 0 0.864773 0.195663 0.527208 0.543945C0.189642 0.892227 0 1.3646 0 1.85714V9.28571H1.6074C3.4002 9.28571 5.0634 10.5504 5.3514 12.376C5.43946 12.9091 5.41362 13.4556 5.27569 13.9774C5.13776 14.4991 4.89107 14.9835 4.55286 15.3967C4.21464 15.8098 3.79306 16.1418 3.31757 16.3694C2.84208 16.597 2.32416 16.7147 1.8 16.7143H0V24.1429C0 24.6354 0.189642 25.1078 0.527208 25.4561C0.864773 25.8043 1.32261 26 1.8 26H34.2C34.6774 26 35.1352 25.8043 35.4728 25.4561C35.8104 25.1078 36 24.6354 36 24.1429V16.7143H34.2C33.6758 16.7147 33.1579 16.597 32.6824 16.3694C32.2069 16.1418 31.7854 15.8098 31.4471 15.3967C31.1089 14.9835 30.8622 14.4991 30.7243 13.9774C30.5864 13.4556 30.5605 12.9091 30.6486 12.376C30.9366 10.5504 32.5998 9.28571 34.3926 9.28571H36V1.85714C36 1.3646 35.8104 0.892227 35.4728 0.543945C35.1352 0.195663 34.6774 0 34.2 0ZM16.2 22.2857H12.6V18.5714H16.2V22.2857ZM16.2 14.8571H12.6V11.1429H16.2V14.8571ZM16.2 7.42857H12.6V3.71429H16.2V7.42857Z"
+                            fill="white" />
+                    </svg>
+                </div>
+                <div class="popup-subscribe__title">
+                    Get CBD Co coupons instantly and never miss another deal!
+                </div>
+
+                <div class="popup-subscribe__form-slot">
+                    <form action="/" class="form-subscribe">
+    <input type="text" class="form-subscribe__input" placeholder="Enter email">
+    <button class="form-subscribe__btn btn-secondary default-gradient">
+        Get Alerts
+    </button>
+</form>
+                </div>
+
+                <div class="popup-subscribe__footer">
+                    No spam, just savings. Read our <a href="#">Privacy policy</a> for more info.
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="popup" id="popup-discount">
+    <div class="popup__body">
+        <div class="popup__content popup__content--lg">
+            <button class="popup__btn-close" data-action="close-popup">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4.82822 3.23099L14.9952 13.3905L25.0542 3.33299C25.7397 2.72249 26.4492 3.087 26.7327 3.39299C26.9146 3.6146 27.0084 3.89544 26.9962 4.18185C26.984 4.46825 26.8667 4.74013 26.6667 4.94549L16.6062 15.0015L26.6667 25.0545C27.1137 25.4295 27.1137 26.1645 26.7552 26.5755C26.3952 26.985 25.7352 27.222 25.1127 26.736L14.9952 16.6125L4.86572 26.7405C4.42172 27.138 3.68972 27.057 3.32822 26.6625C2.96522 26.2665 2.82722 25.5825 3.29072 25.0995L13.3842 15.0015L3.33272 4.94549C2.96522 4.54049 2.83772 3.79949 3.33272 3.33299C3.82772 2.86649 4.56572 2.93099 4.82822 3.23099Z"
+                        fill="black" />
+                </svg>
+            </button>
+
+            <div class="discount-popup">
+                <h2 class="discount-popup__title h3">
+                    Save Up to $200 Off on Online Betting
+                </h2>
+                <div class="discount-popup__subtitle">
+                    Save at Top bet365 Competitors with Today’s Verified Discount Codes
+                </div>
+                <div class="discount-popup__list">
+                    <div class="code-card">
+                        <div class="code-card__head">
+                            <div class="code-card__title">
+                                $1000 Off
+                            </div>
+                            <div class="code-card__logo">
+                                <img src="assets/images/bet.png" alt="">
+                            </div>
+                        </div>
+                        <div class="code-card__text">
+                            Betdaq Coupon: Get $1,000 Off Cashback. Exclusions: Reead the Note.
+                        </div>
+                        <div class="code-card__row">
+                            <div class="code-card__promo-code" data-promo-code>
+                                <div class="promo-code__value text-success">
+                                    DAQBACK
+                                </div>
+                                <button class="btn-secondary default-gradient" data-action="copy-code">
+                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                            fill="currentColor" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-card__footer">
+                            <div>
+                                29 uses - Last 4d ago
+                            </div>
+                            <div>
+                                <img src="assets/icons/check-circle-gradient.svg" alt="">
+                                Verified
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-card">
+                        <div class="code-card__head">
+                            <div class="code-card__title">
+                                $1000 Off
+                            </div>
+                            <div class="code-card__logo">
+                                <img src="assets/images/bet.png" alt="">
+                            </div>
+                        </div>
+                        <div class="code-card__text">
+                            Betdaq Coupon: Get $1,000 Off Cashback. Exclusions: Reead the Note.
+                        </div>
+                        <div class="code-card__row">
+                            <div class="code-card__promo-code" data-promo-code>
+                                <div class="promo-code__value text-success">
+                                    DAQBACK
+                                </div>
+                                <button class="btn-secondary default-gradient" data-action="copy-code">
+                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                            fill="currentColor" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-card__footer">
+                            <div>
+                                29 uses - Last 4d ago
+                            </div>
+                            <div>
+                                <img src="assets/icons/check-circle-gradient.svg" alt="">
+                                Verified
+                            </div>
+                        </div>
+                    </div>
+                    <div class="code-card">
+                        <div class="code-card__head">
+                            <div class="code-card__title">
+                                $1000 Off
+                            </div>
+                            <div class="code-card__logo">
+                                <img src="assets/images/bet.png" alt="">
+                            </div>
+                        </div>
+                        <div class="code-card__text">
+                            Betdaq Coupon: Get $1,000 Off Cashback. Exclusions: Reead the Note.
+                        </div>
+                        <div class="code-card__row">
+                            <div class="code-card__promo-code" data-promo-code>
+                                <div class="promo-code__value text-success">
+                                    DAQBACK
+                                </div>
+                                <button class="btn-secondary default-gradient" data-action="copy-code">
+                                    <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                            fill="currentColor" />
+                                        <path fill-rule="evenodd" clip-rule="evenodd"
+                                            d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                            fill="currentColor" />
+                                    </svg>
+                                    Copy
+                                </button>
+                            </div>
+                        </div>
+                        <div class="code-card__footer">
+                            <div>
+                                29 uses - Last 4d ago
+                            </div>
+                            <div>
+                                <img src="assets/icons/check-circle-gradient.svg" alt="">
+                                Verified
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="popup" id="popup-untested-codes">
+    <div class="popup__body">
+        <div class="popup__content popup__content--lg">
+            <button class="popup__btn-close" data-action="close-popup">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M4.82822 3.23099L14.9952 13.3905L25.0542 3.33299C25.7397 2.72249 26.4492 3.087 26.7327 3.39299C26.9146 3.6146 27.0084 3.89544 26.9962 4.18185C26.984 4.46825 26.8667 4.74013 26.6667 4.94549L16.6062 15.0015L26.6667 25.0545C27.1137 25.4295 27.1137 26.1645 26.7552 26.5755C26.3952 26.985 25.7352 27.222 25.1127 26.736L14.9952 16.6125L4.86572 26.7405C4.42172 27.138 3.68972 27.057 3.32822 26.6625C2.96522 26.2665 2.82722 25.5825 3.29072 25.0995L13.3842 15.0015L3.33272 4.94549C2.96522 4.54049 2.83772 3.79949 3.33272 3.33299C3.82772 2.86649 4.56572 2.93099 4.82822 3.23099Z"
+                        fill="black" />
+                </svg>
+            </button>
+
+            <div class="untested-codes-popup">
+                <h2 class="untested-codes-popup__title h3">
+                    Save Up to $200 Off on Online Betting
+                </h2>
+                <div class="untested-codes-popup__subtitle">
+                    Save at Top bet365 Competitors with Today’s Verified Discount Codes
+                </div>
+                <div class="untested-codes-popup__list">
+                    <div class="untested-codes-card">
+                        <div class="untested-codes-card__title">
+                            Ron Dorff Promo Code (Unverified): 10% Off Select Items
+                        </div>
+
+                        <div class="code-card__promo-code" data-promo-code>
+                            <div class="promo-code__value text-info">
+                                DAQBACK
+                            </div>
+                            <button class="btn-secondary default-gradient" data-action="copy-code">
+                                <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                        fill="currentColor" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                        fill="currentColor" />
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+
+                        <div class="untested-codes-card__bottom">
+                            <img src="assets/icons/check.svg" alt="">
+                            Untested code. Used 15 times. Last ased 4wk ago.
+                        </div>
+                    </div>
+                    <div class="untested-codes-card">
+                        <div class="untested-codes-card__title">
+                            Ron Dorff Promo Code (Unverified): 10% Off Select Items
+                        </div>
+
+                        <div class="code-card__promo-code" data-promo-code>
+                            <div class="promo-code__value text-info">
+                                DAQBACL
+                            </div>
+                            <button class="btn-secondary default-gradient" data-action="copy-code">
+                                <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                        fill="currentColor" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                        fill="currentColor" />
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+
+                        <div class="untested-codes-card__bottom">
+                            <img src="assets/icons/check.svg" alt="">
+                            Untested code. Used 15 times. Last ased 4wk ago.
+                        </div>
+                    </div>
+                    <div class="untested-codes-card">
+                        <div class="untested-codes-card__title">
+                            Ron Dorff Promo Code (Unverified): 10% Off Select Items
+                        </div>
+
+                        <div class="code-card__promo-code" data-promo-code>
+                            <div class="promo-code__value text-info">
+                                DAQBACK
+                            </div>
+                            <button class="btn-secondary default-gradient" data-action="copy-code">
+                                <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                        fill="currentColor" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                        fill="currentColor" />
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+
+                        <div class="untested-codes-card__bottom">
+                            <img src="assets/icons/check.svg" alt="">
+                            Untested code. Used 15 times. Last ased 4wk ago.
+                        </div>
+                    </div>
+                    <div class="untested-codes-card">
+                        <div class="untested-codes-card__title">
+                            Ron Dorff Promo Code (Unverified): 10% Off Select Items
+                        </div>
+
+                        <div class="code-card__promo-code" data-promo-code>
+                            <div class="promo-code__value text-info">
+                                DAQBACK
+                            </div>
+                            <button class="btn-secondary default-gradient" data-action="copy-code">
+                                <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                        fill="currentColor" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                        fill="currentColor" />
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+
+                        <div class="untested-codes-card__bottom">
+                            <img src="assets/icons/check.svg" alt="">
+                            Untested code. Used 15 times. Last ased 4wk ago.
+                        </div>
+                    </div>
+                    <div class="untested-codes-card">
+                        <div class="untested-codes-card__title">
+                            Ron Dorff Promo Code (Unverified): 10% Off Select Items
+                        </div>
+
+                        <div class="code-card__promo-code" data-promo-code>
+                            <div class="promo-code__value text-info">
+                                DAQBACK
+                            </div>
+                            <button class="btn-secondary default-gradient" data-action="copy-code">
+                                <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                        fill="currentColor" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                        fill="currentColor" />
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+
+                        <div class="untested-codes-card__bottom">
+                            <img src="assets/icons/check.svg" alt="">
+                            Untested code. Used 15 times. Last ased 4wk ago.
+                        </div>
+                    </div>
+                    <div class="untested-codes-card">
+                        <div class="untested-codes-card__title">
+                            Ron Dorff Promo Code (Unverified): 10% Off Select Items
+                        </div>
+
+                        <div class="code-card__promo-code" data-promo-code>
+                            <div class="promo-code__value text-info">
+                                DAQBACK
+                            </div>
+                            <button class="btn-secondary default-gradient" data-action="copy-code">
+                                <svg width="19" height="18" viewBox="0 0 19 18" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.77615 4.36549C5.87625 4.36549 5.14674 5.095 5.14674 5.9949V14.8176C5.14674 15.7175 5.87625 16.447 6.77615 16.447H15.5988C16.4987 16.447 17.2283 15.7175 17.2283 14.8176V5.9949C17.2283 5.095 16.4987 4.36549 15.5988 4.36549H6.77615ZM3.875 5.9949C3.875 4.39264 5.17389 3.09375 6.77615 3.09375H15.5988C17.2011 3.09375 18.5 4.39264 18.5 5.9949V14.8176C18.5 16.4199 17.2011 17.7188 15.5988 17.7188H6.77615C5.17389 17.7188 3.875 16.4199 3.875 14.8176V5.9949Z"
+                                        fill="currentColor" />
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M3.67747 0.281253L3.67935 0.28125H12.2636L12.2654 0.281253C13.0231 0.283408 13.7492 0.585379 14.2851 1.12119C14.8209 1.657 15.1228 2.3831 15.125 3.14085C15.125 3.14587 15.125 3.15089 15.1249 3.15591L15.125 3.65625C15.1177 4.00735 14.6324 3.94481 14.2812 3.9375C13.9301 3.93019 13.7114 4.00735 13.7188 3.65625L13.8532 3.13759C13.8502 2.71836 13.6824 2.31703 13.3858 2.02045C13.0878 1.72244 12.684 1.55441 12.2626 1.55299H3.68036C3.1747 1.55471 2.69024 1.75634 2.33267 2.11392C1.97509 2.47149 1.77346 2.95595 1.77174 3.46161V12.0439C1.77316 12.4653 1.94119 12.869 2.2392 13.1671C2.53721 13.4651 2.941 13.6331 3.36244 13.6345H4.31522C4.6664 13.6345 4.95109 13.9192 4.95109 14.2704C4.95109 14.6216 4.6664 14.9062 4.31522 14.9062H3.36141L3.3596 14.9062C2.60185 14.9041 1.87575 14.6021 1.33994 14.0663C0.804129 13.5305 0.502158 12.8044 0.500003 12.0466L0.5 12.0448V3.4606L0.500003 3.45872C0.502491 2.61677 0.838058 1.81001 1.43341 1.21466C2.02876 0.619308 2.83552 0.283741 3.67747 0.281253Z"
+                                        fill="currentColor" />
+                                </svg>
+                                Copy
+                            </button>
+                        </div>
+
+                        <div class="untested-codes-card__bottom">
+                            <img src="assets/icons/check.svg" alt="">
+                            Untested code. Used 15 times. Last ased 4wk ago.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

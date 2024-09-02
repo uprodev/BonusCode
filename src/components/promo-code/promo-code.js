@@ -4,13 +4,14 @@
         const $codeContainer = $promoCode.querySelector('.promo-code__value');
         const $parentPopup = $promoCode.closest('.popup');
 
-        
-        if($parentPopup) {
-            $parentPopup.onOpen(() => {
-                setTimeout(() => {
-                    copyCode($promoCode, $codeContainer);
-                }, 400);
-            });
+        if($promoCode.getAttribute('data-promo-code') === 'copy-by-open-popup') {
+            if($parentPopup) {
+                $parentPopup?.onOpen(() => {
+                    setTimeout(() => {
+                        copyCode($promoCode, $codeContainer);
+                    }, 400);
+                });
+            }
         }
     })
 

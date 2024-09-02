@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+@@include('_head.html',{
+"title": "New Project"
+})
+
+<body>
+    @@include('components/loader/_page-loader.html', {})
+
+    @@include('sections/header/_header.html', {})
+
+    <div class="top-space"></div>
+    <main class="_page">
+        <div class="container">
+            <div class="box-default">
+                <ul class="mb-0 text-[2rem] grid gap-[1rem]">
+                    <li>
+                        <a href="#popup-promo-code" data-action="open-popup">Popup by click “Show Promo Code” button</a>
+                    </li>
+                    <li>
+                        <a href="#popup-discount" data-action="open-popup">Popup by click “Discount” button</a>
+                    </li>
+                    <li>
+                        <a href="#popup-untested-codes" data-action="open-popup">Popup by click “Try Untested Codes” button</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+    </main>
+
+    @@include('sections/footer/_footer.html', {})
+
+    @@include('components/popup-overlays/_promo-code.html', {})
+    @@include('components/popup-overlays/_discount.html', {})
+    @@include('components/popup-overlays/_untested-codes.html', {})
+
+</body>
+
+</html>
