@@ -29,6 +29,8 @@
 
     &__filter {
         padding: 0 2rem;
+        position: relative;
+        z-index: 2;
         @media (min-width: $mq-lg) {
             padding: 0;
         }
@@ -58,7 +60,7 @@
     position: relative;
 
     @media (min-width: 0px) and (max-width: $mq-lg - 1px) {
-        &:hover {
+        &--open {
             & .categories-filter__list {
                 display: flex;
             }

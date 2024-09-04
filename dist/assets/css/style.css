@@ -3557,6 +3557,8 @@ ol {
 }
 .categories__filter {
   padding: 0 2rem;
+  position: relative;
+  z-index: 2;
 }
 .categories__content {
   margin-top: 4rem;
@@ -3653,7 +3655,7 @@ ol {
     background-color: transparent;
     padding: 2rem 4.5rem;
   }
-  .categories-filter:hover .categories-filter__list {
+  .categories-filter--open .categories-filter__list {
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;

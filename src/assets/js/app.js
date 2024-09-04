@@ -33,6 +33,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
     // ==== sections =====================================================
     @@include('../../sections/header/header.js')
+    @@include('../../sections/categories/categories.js')
     // ==== // sections =====================================================
 
     document.body.classList.add('page-loaded');
