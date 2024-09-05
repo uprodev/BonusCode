@@ -129,6 +129,61 @@
     }
 }
 
+.extension-info {
+    padding: 6rem 1.5rem 3.5rem;
+
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    &:not(.hidden) {
+        display: flex;
+    }
+
+    @media (min-width: $mq-lg) {
+        padding: 5.4rem 4rem 4.2rem;
+    }
+
+    &__suptitle {
+        font-weight: 500;
+    }
+
+    &__title {
+        margin-top: 2rem;
+    }
+
+    &__subtitle {
+        margin-top: 3.2rem;
+    }
+
+    &__img {
+        margin-top: 2rem;
+        & img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 1.4rem;
+        }
+    }
+
+    & .btn-secondary {
+        margin-top: 3.2rem;
+
+        @media (min-width: $mq-lg) {
+            font-size: 1.4rem;
+        }
+    }
+
+    & > .text-success {
+        margin-top: .8rem;
+        font-weight: 500;
+        font-size: 1.2rem;
+
+        @media (min-width: $mq-lg) {
+            font-size: 1.4rem;
+        }
+    }
+}
 
 .discount-popup {
     padding: 6rem 2rem 3.5rem;

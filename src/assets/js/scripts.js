@@ -159,8 +159,8 @@ function initToggleClassesByClick() {
         if (e.target.closest('[data-action="remove-classes-by-click"]')) {
             const actionEl = e.target.closest('[data-action="remove-classes-by-click"]');
 
-            let targetSelectors = actionEl.getAttribute('data-target').split(',').map(c => c.trim());
-            const classes = actionEl.getAttribute('data-classes').split(',').map(c => c.trim());
+            let targetSelectors = actionEl.getAttribute('data-remove-classes-target').split(',').map(c => c.trim());
+            const classes = actionEl.getAttribute('data-remove-classes').split(',').map(c => c.trim());
 
             if (/_self/.test(targetSelectors)) {
                 targetSelectors = targetSelectors.filter(c => c !== '_self');
@@ -177,8 +177,8 @@ function initToggleClassesByClick() {
         if (e.target.closest('[data-action="add-classes-by-click"]')) {
             const actionEl = e.target.closest('[data-action="add-classes-by-click"]');
 
-            let targetSelectors = actionEl.getAttribute('data-target').split(',').map(c => c.trim());
-            const classes = actionEl.getAttribute('data-classes').split(',').map(c => c.trim());
+            let targetSelectors = actionEl.getAttribute('data-add-classes-target').split(',').map(c => c.trim());
+            const classes = actionEl.getAttribute('data-add-classes').split(',').map(c => c.trim());
 
             if (/_self/.test(targetSelectors)) {
                 targetSelectors = targetSelectors.filter(c => c !== '_self');

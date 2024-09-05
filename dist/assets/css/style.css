@@ -617,6 +617,9 @@ video {
 .contents {
   display: contents;
 }
+.hidden {
+  display: none;
+}
 .size-6 {
   width: 1.5rem;
   height: 1.5rem;
@@ -2414,6 +2417,49 @@ ol {
   font-weight: 600;
 }
 
+.extension-info {
+  padding: 6rem 1.5rem 3.5rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: center;
+}
+.extension-info:not(.hidden) {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+.extension-info__suptitle {
+  font-weight: 500;
+}
+.extension-info__title {
+  margin-top: 2rem;
+}
+.extension-info__subtitle {
+  margin-top: 3.2rem;
+}
+.extension-info__img {
+  margin-top: 2rem;
+}
+.extension-info__img img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 1.4rem;
+}
+.extension-info .btn-secondary {
+  margin-top: 3.2rem;
+}
+.extension-info > .text-success {
+  margin-top: 0.8rem;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
 .discount-popup {
   padding: 6rem 2rem 3.5rem;
 }
@@ -3873,6 +3919,15 @@ ol {
   }
   .popup-subscribe {
     padding: 3.4rem 4rem;
+  }
+  .extension-info {
+    padding: 5.4rem 4rem 4.2rem;
+  }
+  .extension-info .btn-secondary {
+    font-size: 1.4rem;
+  }
+  .extension-info > .text-success {
+    font-size: 1.4rem;
   }
   .discount-popup {
     padding: 5.4rem 6rem 4.2rem;

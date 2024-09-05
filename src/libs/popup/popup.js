@@ -31,6 +31,8 @@ if (popupCloseIcon.length > 0) {
     for (let index = 0; index < popupCloseIcon.length; index++) {
         const el = popupCloseIcon[index];
         el.addEventListener('click', function (e) {
+            console.log('test');
+            
             popupClose(el.closest('.popup'));
             e.preventDefault();
         });

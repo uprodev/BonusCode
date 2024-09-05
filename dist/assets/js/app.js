@@ -361,8 +361,8 @@ function initToggleClassesByClick() {
         if (e.target.closest('[data-action="remove-classes-by-click"]')) {
             const actionEl = e.target.closest('[data-action="remove-classes-by-click"]');
 
-            let targetSelectors = actionEl.getAttribute('data-target').split(',').map(c => c.trim());
-            const classes = actionEl.getAttribute('data-classes').split(',').map(c => c.trim());
+            let targetSelectors = actionEl.getAttribute('data-remove-classes-target').split(',').map(c => c.trim());
+            const classes = actionEl.getAttribute('data-remove-classes').split(',').map(c => c.trim());
 
             if (/_self/.test(targetSelectors)) {
                 targetSelectors = targetSelectors.filter(c => c !== '_self');
@@ -379,8 +379,8 @@ function initToggleClassesByClick() {
         if (e.target.closest('[data-action="add-classes-by-click"]')) {
             const actionEl = e.target.closest('[data-action="add-classes-by-click"]');
 
-            let targetSelectors = actionEl.getAttribute('data-target').split(',').map(c => c.trim());
-            const classes = actionEl.getAttribute('data-classes').split(',').map(c => c.trim());
+            let targetSelectors = actionEl.getAttribute('data-add-classes-target').split(',').map(c => c.trim());
+            const classes = actionEl.getAttribute('data-add-classes').split(',').map(c => c.trim());
 
             if (/_self/.test(targetSelectors)) {
                 targetSelectors = targetSelectors.filter(c => c !== '_self');
@@ -709,6 +709,8 @@ if (popupCloseIcon.length > 0) {
     for (let index = 0; index < popupCloseIcon.length; index++) {
         const el = popupCloseIcon[index];
         el.addEventListener('click', function (e) {
+            console.log('test');
+            
             popupClose(el.closest('.popup'));
             e.preventDefault();
         });
@@ -986,6 +988,31 @@ function numberToArray(num) {
     }
 
     return result;
+}
+    {
+    handleDocumentClick((e) => {
+        if(e.target.closest('[data-action="show-extension-info"]')) {
+            const $parent = e.target.closest('.popup__content');
+            const $mainPopupContent = $parent.querySelector('.main-popup-content');
+            const $extensionInfo = $parent.querySelector('.extension-info');
+
+            $mainPopupContent.classList.add('hidden'); 
+            $extensionInfo.classList.remove('hidden'); 
+        }
+
+        if(e.target.closest('[data-action="hide-extension-info"]')) {
+            const $parent = e.target.closest('.popup__content');
+            const $mainPopupContent = $parent.querySelector('.main-popup-content');
+            const $extensionInfo = $parent.querySelector('.extension-info');
+
+            window.popup.close(`#${e.target.closest('.popup').id}`);
+            
+            setTimeout(() => {
+                $mainPopupContent.classList.remove('hidden'); 
+                $extensionInfo.classList.add('hidden'); 
+            }, 400)
+        }
+    })
 }
     // ==== // components =====================================================
 
