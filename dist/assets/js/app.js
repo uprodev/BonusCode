@@ -676,46 +676,33 @@ window.addEventListener("DOMContentLoaded", () => {
     initAnchorsLinkOffset();
 
     // ==== libs =====================================================
-    const popupLinks = document.querySelectorAll('[data-action="open-popup"]');
-
-let unlock = true;
+    let unlock = true;
 
 const timeout = 400;
 
-if (popupLinks.length > 0) {
-    for (let index = 0; index < popupLinks.length; index++) {
-        const popupLink = popupLinks[index];
+handleDocumentClick((e) => {
+    if (e.target.closest('[data-action="open-popup"]')) {
+        e.preventDefault();
+        const popupLink = e.target.closest('[data-action="open-popup"]');
         const popupName = popupLink.getAttribute('href').replace('#', '');
         const curentPopup = document.getElementById(popupName);
+        popupOpen(curentPopup);
 
-        popupLink.addEventListener('click', function (e) {
-            popupOpen(curentPopup);
-            e.preventDefault();
-        });
-
-        if(curentPopup) {
-            curentPopup.onOpenSubscribes = [];
-    
-            curentPopup.onOpen = (callback) => {
-                curentPopup.onOpenSubscribes.push(callback);
-            }
+        const $promoCode = curentPopup.querySelector('[data-promo-code]');
+        if($promoCode && $promoCode.getAttribute('data-promo-code') === 'copy-by-open-popup') {
+            const $codeContainer = $promoCode.querySelector('.promo-code__value');
+            const $parentPopup = $promoCode.closest('.popup');
+            
+            setTimeout(() => {
+                copyCode($promoCode, $codeContainer);
+            }, 400);
         }
     }
-}
 
-
-const popupCloseIcon = document.querySelectorAll('[data-action="close-popup"]');
-if (popupCloseIcon.length > 0) {
-    for (let index = 0; index < popupCloseIcon.length; index++) {
-        const el = popupCloseIcon[index];
-        el.addEventListener('click', function (e) {
-            console.log('test');
-            
-            popupClose(el.closest('.popup'));
-            e.preventDefault();
-        });
+    if (e.target.closest('[data-action="close-popup"]')) {
+        popupClose(e.target.closest('.popup'));
     }
-}
+})
 
 function popupOpen(curentPopup) {
     if (curentPopup && unlock) {
@@ -731,8 +718,6 @@ function popupOpen(curentPopup) {
                 popupClose(e.target.closest('.popup'));
             }
         });
-
-        curentPopup.onOpenSubscribes?.forEach(callback => callback());
     }
 }
 
@@ -886,42 +871,25 @@ window.popup = {
     // ==== // libs =====================================================
 
     // ==== components =====================================================
-    {
-    const $promoCodeElements = document.querySelectorAll('[data-promo-code]');
-    $promoCodeElements.forEach($promoCode => {
-        const $codeContainer = $promoCode.querySelector('.promo-code__value');
-        const $parentPopup = $promoCode.closest('.popup');
+    
+handleDocumentClick((e) => {
+    if(e.target.closest('[data-action="copy-code"]')) {
+        const $parent = e.target.closest('[data-promo-code]');
+        const $vlueContaier = $parent.querySelector('.promo-code__value');
 
-        if($promoCode.getAttribute('data-promo-code') === 'copy-by-open-popup') {
-            if($parentPopup) {
-                $parentPopup?.onOpen(() => {
-                    setTimeout(() => {
-                        copyCode($promoCode, $codeContainer);
-                    }, 400);
-                });
-            }
-        }
-    })
+        copyCode($parent, $vlueContaier);
 
-    handleDocumentClick((e) => {
-        if(e.target.closest('[data-action="copy-code"]')) {
-            const $parent = e.target.closest('[data-promo-code]');
-            const $vlueContaier = $parent.querySelector('.promo-code__value');
-
-            copyCode($parent, $vlueContaier);
-
-            const range = document.createRange();
-            range.selectNode($vlueContaier);
-            
-            window.getSelection().removeAllRanges();
-            window.getSelection().addRange(range);
-        }
-    });
-
-    function copyCode($promoCodeWrapper, $pormoCodeValue) {
-        navigator.clipboard.writeText($pormoCodeValue.innerText.trim());
-        $promoCodeWrapper.classList.add('code-copied');
+        const range = document.createRange();
+        range.selectNode($vlueContaier);
+        
+        window.getSelection().removeAllRanges();
+        window.getSelection().addRange(range);
     }
+});
+
+function copyCode($promoCodeWrapper, $pormoCodeValue) {
+    navigator.clipboard.writeText($pormoCodeValue.innerText.trim());
+    $promoCodeWrapper.classList.add('code-copied');
 }
     {
     const $textareas = document.querySelectorAll('.textarea');

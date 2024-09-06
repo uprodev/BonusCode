@@ -1,43 +1,30 @@
-const popupLinks = document.querySelectorAll('[data-action="open-popup"]');
-
 let unlock = true;
 
 const timeout = 400;
 
-if (popupLinks.length > 0) {
-    for (let index = 0; index < popupLinks.length; index++) {
-        const popupLink = popupLinks[index];
+handleDocumentClick((e) => {
+    if (e.target.closest('[data-action="open-popup"]')) {
+        e.preventDefault();
+        const popupLink = e.target.closest('[data-action="open-popup"]');
         const popupName = popupLink.getAttribute('href').replace('#', '');
         const curentPopup = document.getElementById(popupName);
+        popupOpen(curentPopup);
 
-        popupLink.addEventListener('click', function (e) {
-            popupOpen(curentPopup);
-            e.preventDefault();
-        });
-
-        if(curentPopup) {
-            curentPopup.onOpenSubscribes = [];
-    
-            curentPopup.onOpen = (callback) => {
-                curentPopup.onOpenSubscribes.push(callback);
-            }
+        const $promoCode = curentPopup.querySelector('[data-promo-code]');
+        if($promoCode && $promoCode.getAttribute('data-promo-code') === 'copy-by-open-popup') {
+            const $codeContainer = $promoCode.querySelector('.promo-code__value');
+            const $parentPopup = $promoCode.closest('.popup');
+            
+            setTimeout(() => {
+                copyCode($promoCode, $codeContainer);
+            }, 400);
         }
     }
-}
 
-
-const popupCloseIcon = document.querySelectorAll('[data-action="close-popup"]');
-if (popupCloseIcon.length > 0) {
-    for (let index = 0; index < popupCloseIcon.length; index++) {
-        const el = popupCloseIcon[index];
-        el.addEventListener('click', function (e) {
-            console.log('test');
-            
-            popupClose(el.closest('.popup'));
-            e.preventDefault();
-        });
+    if (e.target.closest('[data-action="close-popup"]')) {
+        popupClose(e.target.closest('.popup'));
     }
-}
+})
 
 function popupOpen(curentPopup) {
     if (curentPopup && unlock) {
@@ -53,8 +40,6 @@ function popupOpen(curentPopup) {
                 popupClose(e.target.closest('.popup'));
             }
         });
-
-        curentPopup.onOpenSubscribes?.forEach(callback => callback());
     }
 }
 
