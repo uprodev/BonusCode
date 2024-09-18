@@ -5,6 +5,7 @@
     align-items: center;
     gap: 1rem;
     padding: 0.6rem;
+    position: relative;
 
     &__input {
         height: 3.4rem;
@@ -32,5 +33,17 @@
         &.btn-secondary {
             padding: 0.6rem 1.45rem;
         }
+    }
+
+    & .wpcf7-form-control-wrap {
+        position: static;
+    }
+
+    & .wpcf7-not-valid-tip {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        font-size: 1rem;
     }
 }

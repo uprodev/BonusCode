@@ -21,9 +21,11 @@
 
         @media (min-width: $mq-lg) {
             margin-top: 2.4rem;
-            display: grid;
-            grid-template-columns: 20.5rem 1fr;
-            gap: 3.2rem;
+            &:has(.categories__filter) {
+                display: grid;
+                grid-template-columns: 20.5rem 1fr;
+                gap: 3.2rem;
+            }
         }
     }
 

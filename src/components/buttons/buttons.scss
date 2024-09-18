@@ -26,13 +26,14 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    min-height: 3.4rem;
+    min-height: 4.1rem;
     border-radius: 999px;
     padding: 0.8rem 2.1rem;
-    font-size: 1.2rem;
+    font-size: 1.4rem;
     font-weight: 500;
     color: $color-text-primary-light;
     gap: 0.2em;
+    
 
     &--lg {
         min-height: 5.4rem;

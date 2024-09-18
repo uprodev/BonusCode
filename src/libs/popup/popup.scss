@@ -91,13 +91,11 @@
     &__scroll-container {
         min-height: 20rem;    
         height: 100%;
-        overflow-y: auto;
-        overflow-x: hidden;
+        overflow: auto;
         direction: rtl;
 
         @media (min-width: $mq-md) {
             height: calc(100vh - 2rem);
-            max-height: 72.3rem;
         }
     }
 

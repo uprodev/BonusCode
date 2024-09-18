@@ -1858,6 +1858,32 @@ strong strong {
           flex: 1 1 auto;
 }
 
+input {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none;
+  background: none;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  font: inherit;
+  width: auto;
+  height: auto;
+  color: inherit;
+}
+
+input[type=search] {
+  -webkit-appearance: none;
+}
+
+input[type=search]::-webkit-search-decoration {
+  -webkit-appearance: none;
+}
+
 .h1 {
   font-weight: 600;
   font-size: 4.8rem;
@@ -2070,10 +2096,10 @@ ol {
       -ms-flex-pack: center;
           justify-content: center;
   cursor: pointer;
-  min-height: 3.4rem;
+  min-height: 4.1rem;
   border-radius: 999px;
   padding: 0.8rem 2.1rem;
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   font-weight: 500;
   color: #fff;
   gap: 0.2em;
@@ -2526,6 +2552,7 @@ ol {
           align-items: center;
   gap: 1rem;
   padding: 0.6rem;
+  position: relative;
 }
 .form-subscribe__input {
   height: 3.4rem;
@@ -2569,6 +2596,16 @@ ol {
 }
 .form-subscribe__btn.btn-secondary {
   padding: 0.6rem 1.45rem;
+}
+.form-subscribe .wpcf7-form-control-wrap {
+  position: static;
+}
+.form-subscribe .wpcf7-not-valid-tip {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  font-size: 1rem;
 }
 
 .promo-code {
@@ -2886,6 +2923,9 @@ ol {
   -webkit-box-flex: 0;
       -ms-flex: 0 0 auto;
           flex: 0 0 auto;
+}
+.code-card__row .btn-secondary:first-child {
+  margin-left: auto;
 }
 .code-card__footer {
   margin-top: 2rem;
@@ -3412,6 +3452,15 @@ ol {
   display: block;
   border-radius: 1rem;
 }
+
+.page-id-24 .wpcf7-response-output {
+  width: calc(100% - 4rem);
+  margin-left: auto !important;
+  margin-right: auto !important;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  max-width: 124rem;
+}
 .contact-us__fields {
   margin-top: 2rem;
   display: -webkit-box;
@@ -3695,8 +3744,7 @@ ol {
 .popup__scroll-container {
   min-height: 20rem;
   height: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
+  overflow: auto;
   direction: rtl;
 }
 .popup__scroll-container-inner {
@@ -3705,7 +3753,6 @@ ol {
 @media (min-width: 0px) and (max-width: 1023px) {
   .contact-us.box-default {
     background-color: transparent;
-    padding: 2rem 4.5rem;
   }
   .categories-filter--open .categories-filter__list {
     display: -webkit-box;
@@ -3820,7 +3867,6 @@ ol {
   }
   .popup__scroll-container {
     height: calc(100vh - 2rem);
-    max-height: 72.3rem;
   }
   .md\:ms-auto {
     -webkit-margin-start: auto;
@@ -4208,6 +4254,9 @@ ol {
         -ms-flex: 0 1 calc(50% - 1rem);
             flex: 0 1 calc(50% - 1rem);
   }
+  .page-id-24 .wpcf7-response-output {
+    margin-top: 2rem !important;
+  }
   .contact-us__fields {
     margin-top: 3.6rem;
     -webkit-box-orient: horizontal;
@@ -4289,6 +4338,8 @@ ol {
   }
   .categories__body {
     margin-top: 2.4rem;
+  }
+  .categories__body:has(.categories__filter) {
     display: grid;
     grid-template-columns: 20.5rem 1fr;
     gap: 3.2rem;

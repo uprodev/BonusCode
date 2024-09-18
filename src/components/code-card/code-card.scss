@@ -122,6 +122,10 @@
 
         & .btn-secondary {
             flex: 0 0 auto;
+
+            &:first-child {
+                margin-left: auto;
+            }
         }
     }
 

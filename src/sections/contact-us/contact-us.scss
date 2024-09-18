@@ -1,8 +1,22 @@
+.page-id-24 {
+    .wpcf7-response-output {
+        width: calc(100% - 4rem);
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 0rem;
+        padding-right: 0rem;
+        max-width: 124rem;
+
+        @media (min-width: $mq-lg) {
+            margin-top: 2rem !important;
+        }
+    }
+}
+
 .contact-us {
     @media (min-width: 0px) and (max-width: $mq-lg - 1px) {
         &.box-default {
             background-color: transparent;
-            padding: 2rem 4.5rem;
         }
     }
 
